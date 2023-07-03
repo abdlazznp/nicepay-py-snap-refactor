@@ -1,4 +1,4 @@
-from data.builder.snap import builderAccessToken
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -13,4 +13,4 @@ class testAccessToken:
         .build()
     )
 
-    Result = SnapService.serviceOAUTH(bodyCreateToken.toString())
+    Result = SnapService.serviceOAUTH(bodyCreateToken.jsonAccessToken())

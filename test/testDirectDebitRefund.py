@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.directDebit import builderDirectDebitRefund
-from data.builder.snap import builderAccessToken
+from data.builder import builderDirectDebit
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -28,7 +28,7 @@ class testDirectDebitRefund:
     }
 
     bodyDirectDebitRefund = (
-        builderDirectDebitRefund.BuildDirectDebitRefund()
+        builderDirectDebit.BuildDirectDebitRefund()
         .setPartnerRefundNo("RefundNo" + timestamp)
         .setMerchantId("IONPAYTEST")
         .setSubMerchantId("")
@@ -41,6 +41,6 @@ class testDirectDebitRefund:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyDirectDebitRefund.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyDirectDebitRefund.jsonDirectDebitRefund(),
                                             ConstantsEndpoints.refundDirectDebit())

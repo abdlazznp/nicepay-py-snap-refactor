@@ -1,6 +1,6 @@
-from data.builder.snap import builderAccessToken
+from data.builder import builderAccessToken
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.virtualAccount import builderVirtualAccountInquiry
+from data.builder import builderVirtualAccount
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -23,7 +23,7 @@ class testVirtualAccountInquiry:
                       }
 
     bodyInquiryVA = (
-        builderVirtualAccountInquiry.BuildInquiryVA()
+        builderVirtualAccount.BuildInquiryVA()
         .setPartnerServiceId("")
         .setCustomerNo("")
         .setVirtualAccountNo("111111102221286791")
@@ -33,6 +33,6 @@ class testVirtualAccountInquiry:
         .setAdditionalInfo(additionalInfo)
         .build()
     )
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyInquiryVA.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyInquiryVA.jsonVAInquiry(),
                                             ConstantsEndpoints.inquiryVA())

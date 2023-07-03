@@ -1,5 +1,5 @@
-from data.builder.virtualAccount import builderVirtualAccount
-from data.builder.snap import builderAccessToken
+from data.builder import builderVirtualAccount
+from data.builder import builderAccessToken
 from constants.constantsEndpoint import ConstantsEndpoints
 from service.snapService import SnapService
 from util.utilLogging import Log
@@ -43,6 +43,6 @@ class testVirtualAccount:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyCreateVA.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyCreateVA.jsonVACreate(),
                                             ConstantsEndpoints.createVA())

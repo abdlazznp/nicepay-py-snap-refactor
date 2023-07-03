@@ -5,7 +5,7 @@ class AccessToken:
         self.grantType = grantType
         self.additionalInfo = additionalInfo
 
-    def toString(self):
+    def jsonAccessToken(self):
         return ({
             "grantType": self.grantType,
             "additionalInfo": self.additionalInfo

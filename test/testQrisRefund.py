@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.qris import builderQrisRefund
-from data.builder.snap import builderAccessToken
+from data.builder import builderQris
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -26,7 +26,7 @@ class testQrisRefund:
     }
 
     bodyQrisInquiry = (
-        builderQrisRefund.BuildQrisRefund()
+        builderQris.BuildQrisRefund()
         .setMerchantId("IONPAYTEST")
         .setExternalStoreId("NICEPAY")
         .setOriginalReferenceNo("IONPAYTEST08202306241053146865")
@@ -38,7 +38,7 @@ class testQrisRefund:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyQrisInquiry.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyQrisInquiry.jsonQrisRefund(),
                                             ConstantsEndpoints.refundQris())
     

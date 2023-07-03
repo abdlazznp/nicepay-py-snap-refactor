@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.directDebit import builderDirectDebitInquiry
-from data.builder.snap import builderAccessToken
+from data.builder import builderDirectDebit
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -26,7 +26,7 @@ class testDirectDebitInquiry:
     additionalInfo = {}
 
     bodyDirectDebitInquiry = (
-        builderDirectDebitInquiry.BuildDirectDebitInquiry()
+        builderDirectDebit.BuildDirectDebitInquiry()
         .setMerchantId("IONPAYTEST")
         .setSubMerchantId("")
         .setOriginalPartnerReferenceNo("OrdNo20230624095145")
@@ -38,6 +38,6 @@ class testDirectDebitInquiry:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyDirectDebitInquiry.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyDirectDebitInquiry.jsonDirectDebitInquiry(),
                                             ConstantsEndpoints.inquiryDirectDebit())

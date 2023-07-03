@@ -49,7 +49,7 @@ class Payout:
         self.deliveryNm = deliveryNm
         self.amount = amount
 
-    def toString(self):
+    def jsonPayout(self):
         return ({
             "partnerReferenceNo": self.partnerReferenceNo,
             "merchantId": self.merchantId,
@@ -229,4 +229,175 @@ class BuildPayout(BuilderPayout):
             self.deliveryId,
             self.deliveryNm,
             self.amount
+        )
+
+
+class PayoutApprove:
+    def __init__(self,
+                 originalPartnerReferenceNo,
+                 originalReferenceNo,
+                 merchantId):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        self.originalReferenceNo = originalReferenceNo
+        self.merchantId = merchantId
+
+    def jsonPayoutApprove(self):
+        return ({
+            "originalPartnerReferenceNo": self.originalPartnerReferenceNo,
+            "originalReferenceNo": self.originalReferenceNo,
+            "merchantId": self.merchantId
+        })
+
+
+class BuilderPayoutApprove:
+    def __init__(self):
+        self.originalPartnerReferenceNo = None
+        self.originalReferenceNo = None
+        self.merchantId = None
+
+    def setOriginalPartnerReferenceNo(self, originalPartnerReferenceNo):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        return self
+
+    def setOriginalReferenceNo(self, originalReferenceNo):
+        self.originalReferenceNo = originalReferenceNo
+        return self
+
+    def setMerchantId(self, merchantId):
+        self.merchantId = merchantId
+        return self
+
+
+class BuildPayoutApprove(BuilderPayoutApprove):
+    def build(self):
+        return PayoutApprove(
+            self.originalPartnerReferenceNo,
+            self.originalReferenceNo,
+            self.merchantId
+        )
+
+
+class PayoutBalanceInquiry:
+    def __init__(self,
+                 merchantId,
+                 additionalInfo):
+        self.merchantId = merchantId
+        self.additionalInfo = additionalInfo
+
+    def jsonPayoutBalanceInquiry(self):
+        return ({
+            "merchantId": self.merchantId,
+            "additionalInfo": self.additionalInfo
+        })
+
+
+class BuilderPayoutBalanceInquiry:
+    def __init__(self):
+        self.merchantId = None
+        self.additionalInfo = None
+
+    def setMerchantId(self, merchantId):
+        self.merchantId = merchantId
+        return self
+
+    def setAdditionalInfo(self, additionalInfo):
+        self.additionalInfo = additionalInfo
+        return self
+
+
+class BuildPayoutBalanceInquiry(BuilderPayoutBalanceInquiry):
+    def build(self):
+        return PayoutBalanceInquiry(
+            self.merchantId,
+            self.additionalInfo
+        )
+
+
+class PayoutCancel:
+    def __init__(self,
+                 originalPartnerReferenceNo,
+                 originalReferenceNo,
+                 merchantId):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        self.originalReferenceNo = originalReferenceNo
+        self.merchantId = merchantId
+
+    def jsonPayouCancel(self):
+        return ({
+            "originalPartnerReferenceNo": self.originalPartnerReferenceNo,
+            "originalReferenceNo": self.originalReferenceNo,
+            "merchantId": self.merchantId
+        })
+
+
+class BuilderPayoutCancel:
+    def __init__(self):
+        self.originalPartnerReferenceNo = None
+        self.originalReferenceNo = None
+        self.merchantId = None
+
+    def setOriginalPartnerReferenceNo(self, originalPartnerReferenceNo):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        return self
+
+    def setOriginalReferenceNo(self, originalReferenceNo):
+        self.originalReferenceNo = originalReferenceNo
+        return self
+
+    def setMerchantId(self, merchantId):
+        self.merchantId = merchantId
+        return self
+
+
+class BuildPayoutCancel(BuilderPayoutCancel):
+    def build(self):
+        return PayoutCancel(
+            self.originalPartnerReferenceNo,
+            self.originalReferenceNo,
+            self.merchantId
+        )
+
+
+class PayoutReject:
+    def __init__(self,
+                 originalPartnerReferenceNo,
+                 originalReferenceNo,
+                 merchantId):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        self.originalReferenceNo = originalReferenceNo
+        self.merchantId = merchantId
+
+    def jsonPayoutReject(self):
+        return ({
+            "originalPartnerReferenceNo": self.originalPartnerReferenceNo,
+            "originalReferenceNo": self.originalReferenceNo,
+            "merchantId": self.merchantId
+        })
+
+
+class BuilderPayoutReject:
+    def __init__(self):
+        self.originalPartnerReferenceNo = None
+        self.originalReferenceNo = None
+        self.merchantId = None
+
+    def setOriginalPartnerReferenceNo(self, originalPartnerReferenceNo):
+        self.originalPartnerReferenceNo = originalPartnerReferenceNo
+        return self
+
+    def setOriginalReferenceNo(self, originalReferenceNo):
+        self.originalReferenceNo = originalReferenceNo
+        return self
+
+    def setMerchantId(self, merchantId):
+        self.merchantId = merchantId
+        return self
+
+
+class BuildPayoutReject(BuilderPayoutReject):
+    def build(self):
+        return PayoutReject(
+            self.originalPartnerReferenceNo,
+            self.originalReferenceNo,
+            self.merchantId
         )

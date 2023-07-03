@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.qris import builderQris
-from data.builder.snap import builderAccessToken
+from data.builder import builderQris
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -51,6 +51,6 @@ class testQris:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyQris.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyQris.jsonQris(),
                                             ConstantsEndpoints.qris())

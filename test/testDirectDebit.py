@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from constants.constantsEndpoint import ConstantsEndpoints
-from data.builder.directDebit import builderDirectDebit
-from data.builder.snap import builderAccessToken
+from data.builder import builderDirectDebit
+from data.builder import builderAccessToken
 from service.snapService import SnapService
 from util.utilLogging import Log
 
@@ -62,6 +62,6 @@ class testDirectDebit:
         .build()
     )
 
-    result = SnapService.serviceTransaction(bodyCreateToken.toString(),
-                                            bodyDirectDebit.toString(),
+    result = SnapService.serviceTransaction(bodyCreateToken.jsonAccessToken(),
+                                            bodyDirectDebit.jsonDirectDebit(),
                                             ConstantsEndpoints.directDebit())
